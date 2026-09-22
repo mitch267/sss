@@ -1,7 +1,7 @@
 # IMPORTANT: replace YOUR_GITHUB_USERNAME/YOUR_REPOSITORY before publishing.
 backend:
   name: github
-  repo: YOUR_GITHUB_USERNAME/YOUR_REPOSITORY
+  repo: mitch267/furniture-shop
   branch: main
   # Cloudflare Pages Advanced Mode (_worker.js) OAuth endpoint included in this package.
   base_url: https://falling-morning-cd72.mmkoosaletse.workers.dev
