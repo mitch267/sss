@@ -1,0 +1,86 @@
+{
+  "store": {
+    "name": "Home & Haven Furniture",
+    "tagline": "Furniture made for living.",
+    "announcement": "Free delivery in Gaborone on selected orders",
+    "phone": "+267 71 234 567",
+    "whatsapp": "26771234567",
+    "email": "hello@example.com",
+    "currency": "P",
+    "logo": "/assets/company-logo.svg"
+  },
+  "products": [
+    {
+      "id": "sofa-001",
+      "name": "Luna 3-Seater Sofa",
+      "category": "Sofas",
+      "price": 6499,
+      "salePrice": 5499,
+      "onSale": true,
+      "featured": true,
+      "stock": "In stock",
+      "description": "Deep-seat contemporary sofa with soft woven upholstery and generous cushions.",
+      "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+      "id": "chair-001",
+      "name": "Arlo Accent Chair",
+      "category": "Chairs",
+      "price": 2199,
+      "salePrice": null,
+      "onSale": false,
+      "featured": true,
+      "stock": "In stock",
+      "description": "A sculpted lounge chair designed to add warmth and character to any room.",
+      "image": "https://images.unsplash.com/photo-1598300056393-4aac492f4344?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+      "id": "dining-001",
+      "name": "Oakline Dining Set",
+      "category": "Dining",
+      "price": 8999,
+      "salePrice": 7499,
+      "onSale": true,
+      "featured": true,
+      "stock": "Limited stock",
+      "description": "Six-seat dining set with a clean natural finish for everyday family dining.",
+      "image": "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+      "id": "bed-001",
+      "name": "Serene Queen Bed",
+      "category": "Bedroom",
+      "price": 5999,
+      "salePrice": null,
+      "onSale": false,
+      "featured": false,
+      "stock": "In stock",
+      "description": "Upholstered queen bed frame with a soft headboard and timeless profile.",
+      "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+      "id": "table-001",
+      "name": "Milo Coffee Table",
+      "category": "Tables",
+      "price": 1599,
+      "salePrice": 1299,
+      "onSale": true,
+      "featured": false,
+      "stock": "In stock",
+      "description": "Minimal coffee table with rounded edges and a warm timber-inspired finish.",
+      "image": "https://images.unsplash.com/photo-1532372320572-cda25653a694?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+      "id": "storage-001",
+      "name": "Nora Sideboard",
+      "category": "Storage",
+      "price": 4299,
+      "salePrice": null,
+      "onSale": false,
+      "featured": false,
+      "stock": "In stock",
+      "description": "Spacious sideboard with streamlined doors for dining, living or entry storage.",
+      "image": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1200&q=85"
+    }
+  ]
+}
