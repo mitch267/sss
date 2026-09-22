@@ -1,0 +1,48 @@
+backend:
+  name: github
+  repo: mitch267/furniture-shop
+  branch: main
+  # GitHub OAuth is handled by the Cloudflare Worker at /api/auth and /api/callback.
+  base_url: https://falling-morning-cd72.mmkoosaletse.workers.dev
+  auth_endpoint: api/auth
+  site_domain: falling-morning-cd72.mmkoosaletse.workers.dev
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "catalog"
+    label: "Store Manager"
+    files:
+      - name: "products"
+        label: "Products, Specials & Store Settings"
+        file: "data/products.json"
+        format: "json"
+        fields:
+          - label: "Store Settings"
+            name: "store"
+            widget: "object"
+            fields:
+              - {label: "Store Name", name: "name", widget: "string"}
+              - {label: "Tagline", name: "tagline", widget: "string"}
+              - {label: "Company Logo", name: "logo", widget: "image", required: false, default: "/assets/company-logo.svg"}
+              - {label: "Announcement Bar", name: "announcement", widget: "string"}
+              - {label: "Phone", name: "phone", widget: "string", required: false}
+              - {label: "WhatsApp Number (country code, no +)", name: "whatsapp", widget: "string"}
+              - {label: "Email", name: "email", widget: "string", required: false}
+              - {label: "Currency Symbol", name: "currency", widget: "string", default: "P"}
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.category}}"
+            fields:
+              - {label: "Product ID", name: "id", widget: "string", hint: "Unique, e.g. sofa-001. Do not reuse an ID."}
+              - {label: "Product Name", name: "name", widget: "string"}
+              - {label: "Category", name: "category", widget: "select", options: ["Sofas", "Chairs", "Dining", "Bedroom", "Tables", "Storage", "Office", "Outdoor", "Other"]}
+              - {label: "Regular Price", name: "price", widget: "number", value_type: "float", min: 0}
+              - {label: "On Sale", name: "onSale", widget: "boolean", default: false}
+              - {label: "Sale Price", name: "salePrice", widget: "number", value_type: "float", required: false, min: 0}
+              - {label: "Featured", name: "featured", widget: "boolean", default: false}
+              - {label: "Stock Status", name: "stock", widget: "select", options: ["In stock", "Limited stock", "Out of stock", "Pre-order"]}
+              - {label: "Description", name: "description", widget: "text", required: false}
+              - {label: "Product Image", name: "image", widget: "image"}

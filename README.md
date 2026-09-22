@@ -1,58 +1,48 @@
-# Furniture Shop — Cloudflare Pages Direct Upload (v3)
+# Furniture Shop — Cloudflare Worker + Static Assets
 
-This version is made for Cloudflare Pages **Direct Upload / drag-and-drop ZIP deployments**.
-It uses a root `_worker.js` instead of a `/functions` directory, so Cloudflare can accept the ZIP and provide the GitHub OAuth routes used by Decap CMS.
+Configured for:
+- GitHub repository: `mitch267/furniture-shop`
+- Cloudflare Worker: `falling-morning-cd72`
+- Production URL: `https://falling-morning-cd72.mmkoosaletse.workers.dev`
 
-## 1. GitHub repository is still required
-Decap CMS stores product edits in GitHub. Create a repository containing this site's files, then edit `admin/config.yml`:
+## Repository structure
+- `src/worker.js` — GitHub OAuth backend for Decap CMS
+- `public/` — storefront, CMS, product data and uploaded images
+- `wrangler.jsonc` — Cloudflare Worker + Static Assets configuration
+- `package.json` — Wrangler dependency and deployment scripts
 
-    repo: YOUR_GITHUB_USERNAME/YOUR_REPOSITORY
-    branch: main
+## Replace the files in your GitHub repository
+Upload the CONTENTS of this package to the root of `mitch267/furniture-shop`.
+Do not place the whole package inside another folder.
 
-The repository must contain `data/products.json`, `admin/`, and the rest of this site.
+Your GitHub root should show `wrangler.jsonc`, `package.json`, `src`, and `public`.
 
-## 2. Create a GitHub OAuth App
-In GitHub go to Settings > Developer settings > OAuth Apps > New OAuth App.
+## Cloudflare Git build
+Connect `mitch267/furniture-shop` to the existing Worker `falling-morning-cd72`.
+Use the `main` branch.
 
-Use your production Cloudflare Pages URL for:
-- Homepage URL: `https://YOUR-SITE.pages.dev`
-- Authorization callback URL: `https://YOUR-SITE.pages.dev/api/callback`
+Recommended build/deploy settings:
+- Root directory: `/` (repository root)
+- Build command: leave blank if Cloudflare permits it, otherwise `npm install`
+- Deploy command: `npx wrangler deploy`
 
-If you use a custom domain, use that same domain consistently instead.
+## Required Worker variables/secrets
+After the Worker deployment is active, add:
+- `GITHUB_CLIENT_ID` — your GitHub OAuth App Client ID
+- `GITHUB_CLIENT_SECRET` — your GitHub OAuth App Client Secret (store as Secret)
+- `GITHUB_REPO_PRIVATE` — `false` for a public repository, `true` for private
 
-Copy the Client ID and generate a Client Secret.
+Then redeploy.
 
-## 3. Add Cloudflare environment variables
-In your Cloudflare Pages project settings add:
-- `GITHUB_CLIENT_ID` = GitHub OAuth Client ID
-- `GITHUB_CLIENT_SECRET` = GitHub OAuth Client Secret (encrypt/secret)
-- `GITHUB_REPO_PRIVATE` = `false` for a public repo, or `true` for a private repo
+## GitHub OAuth App
+Homepage URL:
+`https://falling-morning-cd72.mmkoosaletse.workers.dev`
 
-Redeploy after adding/changing variables.
+Authorization callback URL:
+`https://falling-morning-cd72.mmkoosaletse.workers.dev/api/callback`
 
-## 4. Set the CMS site address
-Edit `admin/config.yml` and replace both occurrences of the old demo hostname with your actual production hostname:
+## Admin
+Open:
+`https://falling-morning-cd72.mmkoosaletse.workers.dev/admin/`
 
-    base_url: https://YOUR-SITE.pages.dev
-    site_domain: YOUR-SITE.pages.dev
-
-`auth_endpoint` must remain:
-
-    auth_endpoint: api/auth
-
-## 5. Upload to Cloudflare Pages
-Upload the ZIP using the Cloudflare Pages drag-and-drop deployment screen. `_worker.js` must remain at the root of the ZIP beside `index.html`.
-
-Then open:
-
-    https://YOUR-SITE.pages.dev/admin/
-
-Click **Login with GitHub**.
-
-## 6. Managing the shop
-In the CMS, open **Store Manager > Products, Specials & Store Settings**. You can add/edit/remove products, upload product images, change prices, enable sale pricing, set stock status, and update store details/logo.
-
-Publishing writes the changed content to the GitHub repository. Because a Direct Upload Pages project does not automatically redeploy from GitHub commits, changes committed by Decap will not automatically update the manually uploaded Pages deployment. For fully automatic product publishing, create a Git-integrated Pages project or add a separate deployment workflow.
-
-## Important
-Do not add a `/functions` folder back to this ZIP. Cloudflare dashboard drag-and-drop does not compile Pages Functions folders. This package deliberately uses `_worker.js` Advanced Mode.
+The CMS is already configured for `mitch267/furniture-shop` on branch `main`.
